@@ -9,7 +9,6 @@ export default async function Home() {
     expand: ["data.default_price"],
     limit: 5,
   });
-  console.log("...products", products);
 
   return (
     <div>
