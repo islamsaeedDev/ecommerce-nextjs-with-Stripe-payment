@@ -5,11 +5,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import Carousel from "@/components/Carousel";
-import Stripe from "stripe"; // Ensure stripe types are available or use any
+
 import gsap from "gsap";
 
 interface LandingUIProps {
-  products: any[]; // relaxed type to avoid import issues if Stripe type not exported universally
+  products: any[];
 }
 
 export default function LandingUI({ products }: LandingUIProps) {
