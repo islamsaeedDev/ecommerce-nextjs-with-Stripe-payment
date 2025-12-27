@@ -28,11 +28,11 @@ function ProductCard({ product }: props) {
           </div>
         )}
         <CardHeader className="p-4 grow flex flex-col justify-between">
-          <CardTitle className="text-lg font-bold text-gray-800">
+          <CardTitle className="text-lg font-bold text-foreground">
             {product.name}
           </CardTitle>
           {product.description && (
-            <p className="text-sm text-gray-600 mb-2">
+            <p className="text-sm text-muted-foreground mb-2">
               {product.description.charAt(0).toUpperCase() +
                 product.description.slice(1).slice(0, 50)}
             </p>

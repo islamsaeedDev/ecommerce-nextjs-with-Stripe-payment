@@ -8,6 +8,7 @@ import {
 import { useCartStore } from "@/store/cart-store";
 import { useEffect, useState } from "react";
 import { Button } from "./ui/button";
+import { ModeToggle } from "./ModeToggle";
 
 export default function Navbar() {
   const { getCartItemsQuanitiy } = useCartStore();
@@ -24,9 +25,9 @@ export default function Navbar() {
   }, []);
 
   return (
-    <nav className="sticky top-0 z-50 bg-white shadow py-2">
+    <nav className="sticky top-0 z-50 bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/60 shadow py-2 border-b">
       <div className="container mx-auto flex items-center justify-between px-4 scroll-py-44">
-        <Link href="/" className="hover:text-blue-600">
+        <Link href="/" className="hover:text-primary text-xl font-bold">
           Gulden Brand
         </Link>
         <div className="hidden md:flex space-x-6 font-medium">
@@ -47,18 +48,20 @@ export default function Navbar() {
           </Link>
         </div>
 
-        <div className="flex items-center justify-center space-x-2">
+        <div className="flex items-center justify-center space-x-4">
           <Link
             href="/checkout"
             className="relative hover:text-primary transition duration-300"
           >
-            <ShoppingCartIcon className="h-8 w-8" />
+            <ShoppingCartIcon className="h-6 w-6" />
             {getCartItemsQuanitiy() > 0 && (
-              <span className="p-2 absolute top-1 left-6 inline-flex items-center justify-center px-1.5  before:rounded-full before:px-1 before:py-1  before:bg-primary before:text-xs before:content-[''] before:z-50  ">
+              <span className="absolute -top-2 -right-2 inline-flex items-center justify-center px-1.5 py-0.5 text-xs font-bold leading-none text-red-100 bg-red-600 rounded-full">
                 {getCartItemsQuanitiy()}
               </span>
             )}
           </Link>
+
+          <ModeToggle />
 
           <Button
             variant="ghost"
@@ -75,11 +78,11 @@ export default function Navbar() {
       </div>
 
       {mobileOpen && (
-        <div className="fixed inset-0 z-50 flex h-full w-full items-center justify-center bg-black ">
+        <div className="fixed inset-0 z-50 flex h-full w-full items-center justify-center bg-background/80 backdrop-blur-sm">
           <div className="relative h-full w-full z-80 ">
-            <div className="absolute right-0 top-0 h-full w-[70%] bg-white ">
+            <div className="absolute right-0 top-0 h-full w-[70%] bg-popover border-l p-4 shadow-xl">
               <div className="flex items-center justify-between p-4">
-                <Link href="/" className="hover:text-blue-600">
+                <Link href="/" className="font-bold text-lg hover:text-primary">
                   Gulden Brand
                 </Link>
                 <Button
@@ -87,17 +90,29 @@ export default function Navbar() {
                   onClick={() => setMobileOpen(!mobileOpen)}
                   className="md:hidden hover:text-primary "
                 >
-                  <XMarkIcon className=" cursor-pointer" />
+                  <XMarkIcon className="h-6 w-6 cursor-pointer" />
                 </Button>
               </div>
-              <div className="flex flex-col space-y-4 p-4">
-                <Link href="/" className="hover:text-primary">
+              <div className="flex flex-col space-y-4 p-4 font-medium">
+                <Link
+                  href="/"
+                  className="hover:text-primary"
+                  onClick={() => setMobileOpen(false)}
+                >
                   Home
                 </Link>
-                <Link href="/products" className="hover:text-primary">
+                <Link
+                  href="/products"
+                  className="hover:text-primary"
+                  onClick={() => setMobileOpen(false)}
+                >
                   Products
                 </Link>
-                <Link href="/checkout" className="hover:text-primary">
+                <Link
+                  href="/checkout"
+                  className="hover:text-primary"
+                  onClick={() => setMobileOpen(false)}
+                >
                   Checkout
                 </Link>
               </div>

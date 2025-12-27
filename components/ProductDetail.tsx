@@ -44,12 +44,14 @@ export default function ProductDetail({ product }: Props) {
         </div>
       )}
       <div className="md:w-1/2">
-        <h1 className="text-3xl font-bold mb-4">{product.name}</h1>
+        <h1 className="text-3xl font-bold mb-4 text-foreground">
+          {product.name}
+        </h1>
         {product.description && (
-          <p className="text-gray-700 mb-4">{product.description}</p>
+          <p className=" mb-4 text-muted-foreground">{product.description}</p>
         )}
         {price && price.unit_amount && (
-          <p className="text-lg font-semibold text-gray-900">
+          <p className="text-lg font-semibold text-foreground">
             ${(price.unit_amount / 100).toFixed(2)}
           </p>
         )}
@@ -60,7 +62,9 @@ export default function ProductDetail({ product }: Props) {
           >
             –
           </Button>
-          <span className="text-lg font-semibold">{quantity}</span>
+          <span className="text-lg font-semibold text-foreground">
+            {quantity}
+          </span>
           <Button onClick={() => onAdditem()}>+</Button>
         </div>
       </div>
